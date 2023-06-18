@@ -4,7 +4,7 @@
 
 ## Документы
 * [Задание]([ссылка](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Zadanie.md))
-* [План автоматизации](ссылка)
+* [План автоматизации]([ссылка](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Plan.md))
 * Отчет по итогам тестирования(в разработке)
 * Отчет по итогам автоматизированного тестирования(в разработке)
 
