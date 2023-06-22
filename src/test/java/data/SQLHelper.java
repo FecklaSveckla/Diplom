@@ -33,14 +33,14 @@ public class SQLHelper {
 
     @SneakyThrows
     public static String getPaymentStatus() {
-        var status = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+        var status = "SELECT status FROM payment_entity";
         return runner.query(getConn(), status, new ScalarHandler<>());
 
     }
 
        @SneakyThrows
     public static String getCreditStatus() {
-        var status = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        var status = "SELECT status FROM credit_request_entity";
         return runner.query(getConn(), status, new ScalarHandler<>());
 
     }
