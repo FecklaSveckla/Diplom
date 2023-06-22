@@ -56,17 +56,14 @@ public class PaymentPage {
 
     //очистили поля
     public void cleanField() {
-        cardNumberField.doubleClick().sendKeys( Keys.BACK_SPACE );
-        monthField.doubleClick().sendKeys( Keys.BACK_SPACE );
-        yearField.doubleClick().sendKeys( Keys.BACK_SPACE );
-        holderField.doubleClick().sendKeys( Keys.BACK_SPACE );
-        cvcField.doubleClick().sendKeys( Keys.BACK_SPACE );
+        cardNumberField.sendKeys( Keys.chord( Keys.SHIFT, Keys.HOME ), Keys.BACK_SPACE );
+        monthField.sendKeys( Keys.chord( Keys.SHIFT, Keys.HOME ), Keys.BACK_SPACE );
+        yearField.sendKeys( Keys.chord( Keys.SHIFT, Keys.HOME ), Keys.BACK_SPACE );
+        holderField.sendKeys( Keys.chord( Keys.SHIFT, Keys.HOME ), Keys.BACK_SPACE );
+        cvcField.sendKeys( Keys.chord( Keys.SHIFT, Keys.HOME ), Keys.BACK_SPACE );
     }
 
-    public PaymentPage clear() {
-        cleanField();
-        return new PaymentPage();
-    }
+
 
     //видимость сообщений: успешно-неусрешно
     public void notificationSuccessIsVisible() {
@@ -80,22 +77,22 @@ public class PaymentPage {
     // видимость индикации под полями
     //Поле обязательно для заполнения
     public void waitForValidationMassage() {
-        validatorFieldMessage.shouldBe( visible, Duration.ofSeconds( 15 ) );
+        validatorFieldMessage.shouldBe( visible );
     }
 
     //Неверный формат
     public void waitForWrongFormatMassage() {
-        wrongFormatMessage.shouldBe( visible, Duration.ofSeconds( 15 ) );
+        wrongFormatMessage.shouldBe( visible );
     }
 
     //Истёк срок действия карты
     public void waitForCardExpiredMassage() {
-        cardExpireMassage.shouldBe( visible, Duration.ofSeconds( 15 ) );
+        cardExpireMassage.shouldBe( visible);
     }
 
     //Неверно указан срок действия карты
     public void waitForWrongCardExpirationMassage() {
-        wrongExpirationMassage.shouldBe( visible, Duration.ofSeconds( 15 ) );
+        wrongExpirationMassage.shouldBe( visible);
     }
 
 }

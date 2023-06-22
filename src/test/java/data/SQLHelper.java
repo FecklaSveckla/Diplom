@@ -8,7 +8,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class SQLHelper {
@@ -33,17 +33,15 @@ public class SQLHelper {
 
     @SneakyThrows
     public static String getPaymentStatus() {
-        var status = "SELECT status FROM payment_entity";
-        try (var conn = getConn()) {
-            return runner.query(conn, status, new ScalarHandler<>());
-        }
+        var status = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+        return runner.query(getConn(), status, new ScalarHandler<>());
+
     }
 
-    @SneakyThrows
+       @SneakyThrows
     public static String getCreditStatus() {
-        var status = "SELECT status FROM credit_request_entity";
-        try (var conn = getConn()) {
-            return runner.query(conn, status, new ScalarHandler<>());
-        }
+        var status = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        return runner.query(getConn(), status, new ScalarHandler<>());
+
     }
 }
