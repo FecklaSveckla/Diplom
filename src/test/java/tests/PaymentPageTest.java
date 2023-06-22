@@ -40,6 +40,7 @@ public class PaymentPageTest {
     void shouldBuyAllFieldsValidApprovedCard() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
+        payment.clear();
         payment.fillData( DataHelper.getApprovedCard() );
         payment.notificationSuccessIsVisible();
 
