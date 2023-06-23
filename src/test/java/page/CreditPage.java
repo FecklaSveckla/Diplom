@@ -20,7 +20,7 @@ public class CreditPage {
     private SelenideElement cardNumberField = $( "[placeholder='0000 0000 0000 0000']" );
     private SelenideElement monthField = $( "[placeholder='08']" );
     private SelenideElement yearField = $( "[placeholder='22']" );
-    private SelenideElement holderField = $$( ".input__top" ).find( text( "Владелец" ) ).parent();
+    private SelenideElement holderField = $(byText("Владелец")).parent().$(".input__control");
     private SelenideElement cvcField = $( "[placeholder='999']" );
 
     // кнопка Продолжить
