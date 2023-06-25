@@ -12,16 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentPageTest {
 
-    public static String url = System.getProperty("sut.url");
+    public static String url = System.getProperty( "sut.url" );
 
     @BeforeAll
     static void setUpAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener( "allure", new AllureSelenide() );
     }
 
     @BeforeEach
     public void openPage() {
-        open(url);
+        open( url );
     }
 
     @BeforeEach
@@ -31,7 +31,7 @@ public class PaymentPageTest {
 
     @AfterAll
     static void tearDownAll() {
-        SelenideLogger.removeListener("allure");
+        SelenideLogger.removeListener( "allure" );
 
     }
 
@@ -57,7 +57,7 @@ public class PaymentPageTest {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getDeclinedCard());
+        payment.fillData( DataHelper.getDeclinedCard() );
         payment.notificationErrorIsVisible();
 
         var statusExpected = "DECLINED";
@@ -72,7 +72,7 @@ public class PaymentPageTest {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getHolderInUpperCase());
+        payment.fillData( DataHelper.getHolderInUpperCase() );
         payment.notificationSuccessIsVisible();
 
         var statusExpected = "APPROVED";
@@ -88,7 +88,7 @@ public class PaymentPageTest {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getHolderHyphenated());
+        payment.fillData( DataHelper.getHolderHyphenated() );
         payment.notificationSuccessIsVisible();
 
         var statusExpected = "APPROVED";
@@ -101,11 +101,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 1. Негативный")
     @Test
-    void shouldBuyWithNonExistDebitCard(){
+    void shouldBuyWithNonExistDebitCard() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getNonExistCard());
+        payment.fillData( DataHelper.getNonExistCard() );
         payment.notificationErrorIsVisible();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -132,7 +132,7 @@ public class PaymentPageTest {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData( DataHelper.getOneNumberInFieldCard());
+        payment.fillData( DataHelper.getOneNumberInFieldCard() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -141,11 +141,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 4. Негативный")
     @Test
-    void shouldBuyWithInvalidDebitCard(){
+    void shouldBuyWithInvalidDebitCard() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getInvalidCardNumber());
+        payment.fillData( DataHelper.getInvalidCardNumber() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -154,11 +154,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 5. Негативный")
     @Test
-    void shouldBuyWithFieldMonthIsEmpty(){
+    void shouldBuyWithFieldMonthIsEmpty() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getEmptyMonth());
+        payment.fillData( DataHelper.getEmptyMonth() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -167,11 +167,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 6. Негативный")
     @Test
-    void shouldBuyWithFieldMonthOver12(){
+    void shouldBuyWithFieldMonthOver12() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getMonthOver12());
+        payment.fillData( DataHelper.getMonthOver12() );
         payment.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -180,11 +180,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 7. Негативный")
     @Test
-    void shouldBuyWithFieldMonthZeroAndNowYear(){
+    void shouldBuyWithFieldMonthZeroAndNowYear() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getZeroMonth());
+        payment.fillData( DataHelper.getZeroMonth() );
         payment.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -193,11 +193,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 8. Негативный")
     @Test
-    void shouldBuyWithExpiredCardMonth(){
+    void shouldBuyWithExpiredCardMonth() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getInvalidPastMonth());
+        payment.fillData( DataHelper.getInvalidPastMonth() );
         payment.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -206,11 +206,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 9. Негативный")
     @Test
-    void shouldBuyWithFieldYearIsEmpty(){
+    void shouldBuyWithFieldYearIsEmpty() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getEmptyYear());
+        payment.fillData( DataHelper.getEmptyYear() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -219,11 +219,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 10. Негативный")
     @Test
-    void shouldBuyWithFieldYearIsLastYear(){
+    void shouldBuyWithFieldYearIsLastYear() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getLastYear());
+        payment.fillData( DataHelper.getLastYear() );
         payment.waitForCardExpiredMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -232,11 +232,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 11. Негативный")
     @Test
-    void shouldBuyWithFieldInvalidYear(){
+    void shouldBuyWithFieldInvalidYear() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getNotComingYear());
+        payment.fillData( DataHelper.getNotComingYear() );
         payment.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -245,11 +245,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 12. Негативный")
     @Test
-    void shouldBuyWithEmptyCvcField(){
+    void shouldBuyWithEmptyCvcField() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getEmptyCVC());
+        payment.fillData( DataHelper.getEmptyCVC() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -258,11 +258,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 13. Негативный")
     @Test
-    void shouldBuyWithCVCFieldOneNumber(){
+    void shouldBuyWithCVCFieldOneNumber() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getOneNumberCVC());
+        payment.fillData( DataHelper.getOneNumberCVC() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -271,11 +271,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 14. Негативный")
     @Test
-    void shouldBuyWithCVCFieldTwoNumber(){
+    void shouldBuyWithCVCFieldTwoNumber() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getTwoNumberCVC());
+        payment.fillData( DataHelper.getTwoNumberCVC() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -284,11 +284,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 15. Негативный")
     @Test
-    void shouldBuyWithEmptyFieldHolder(){
+    void shouldBuyWithEmptyFieldHolder() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getEmptyHolderCard());
+        payment.fillData( DataHelper.getEmptyHolderCard() );
         payment.waitForValidationMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -297,11 +297,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 16. Негативный")
     @Test
-    void shouldBuyWithFieldHolderOnlyName(){
+    void shouldBuyWithFieldHolderOnlyName() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getInvalidHolderOneNameCard());
+        payment.fillData( DataHelper.getInvalidHolderOneNameCard() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -324,11 +324,11 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 18. Негативный")
     @Test
-    void shouldBuyWithFieldHolderOnlyNumbers(){
+    void shouldBuyWithFieldHolderOnlyNumbers() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getInvalidHolderNumbersCard());
+        payment.fillData( DataHelper.getInvalidHolderNumbersCard() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
@@ -337,19 +337,16 @@ public class PaymentPageTest {
 
     @DisplayName("Для Сценария 19. Негативный")
     @Test
-    void shouldBuyWithFieldHolderOnlySymbols(){
+    void shouldBuyWithFieldHolderOnlySymbols() {
         var startPage = new MainPage();
         var payment = startPage.goToPaymentPage();
         payment.cleanField();
-        payment.fillData(DataHelper.getInvalidHolderSymbolsCard());
+        payment.fillData( DataHelper.getInvalidHolderSymbolsCard() );
         payment.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getPaymentStatus();
         assertEquals( null, statusActual );
     }
-
-
-
 
 
 }

@@ -14,13 +14,13 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class CreditPage {
     //заголовок страницы
-    private SelenideElement heading = $$( ".heading").find( exactText( "Кредит по данным карты" ) );
+    private SelenideElement heading = $$( ".heading" ).find( exactText( "Кредит по данным карты" ) );
 
     // поля
     private SelenideElement cardNumberField = $( "[placeholder='0000 0000 0000 0000']" );
     private SelenideElement monthField = $( "[placeholder='08']" );
     private SelenideElement yearField = $( "[placeholder='22']" );
-    private SelenideElement holderField = $(byText("Владелец")).parent().$(".input__control");
+    private SelenideElement holderField = $( byText( "Владелец" ) ).parent().$( ".input__control" );
     private SelenideElement cvcField = $( "[placeholder='999']" );
 
     // кнопка Продолжить
@@ -90,9 +90,9 @@ public class CreditPage {
         cardExpireMassage.shouldBe( visible );
     }
 
-   // Неверно указан срок действия карты
+    // Неверно указан срок действия карты
     public void waitForWrongCardExpirationMassage() {
-        wrongExpirationMassage.shouldBe( visible);
+        wrongExpirationMassage.shouldBe( visible );
     }
 
 }

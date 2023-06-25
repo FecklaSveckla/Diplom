@@ -19,7 +19,7 @@ public class PaymentPage {
     private SelenideElement cardNumberField = $( "[placeholder='0000 0000 0000 0000']" );
     private SelenideElement monthField = $( "[placeholder='08']" );
     private SelenideElement yearField = $( "[placeholder='22']" );
-    private SelenideElement holderField = $(byText("Владелец")).parent().$(".input__control");
+    private SelenideElement holderField = $( byText( "Владелец" ) ).parent().$( ".input__control" );
     private SelenideElement cvcField = $( "[placeholder='999']" );
 
     // кнопка Продолжить
@@ -64,7 +64,6 @@ public class PaymentPage {
     }
 
 
-
     //видимость сообщений: успешно-неусрешно
     public void notificationSuccessIsVisible() {
         notificationSuccess.shouldBe( visible, Duration.ofSeconds( 15 ) );
@@ -87,12 +86,12 @@ public class PaymentPage {
 
     //Истёк срок действия карты
     public void waitForCardExpiredMassage() {
-        cardExpireMassage.shouldBe( visible);
+        cardExpireMassage.shouldBe( visible );
     }
 
     //Неверно указан срок действия карты
     public void waitForWrongCardExpirationMassage() {
-        wrongExpirationMassage.shouldBe( visible);
+        wrongExpirationMassage.shouldBe( visible );
     }
 
 }

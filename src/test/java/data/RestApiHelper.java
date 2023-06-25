@@ -9,21 +9,21 @@ import static io.restassured.RestAssured.given;
 
 public class RestApiHelper {
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost")
+            .setBaseUri( "http://localhost" )
             .setPort( 8080 )
-            .setAccept( ContentType.JSON)
-            .setContentType(ContentType.JSON)
-            .log( LogDetail.ALL)
+            .setAccept( ContentType.JSON )
+            .setContentType( ContentType.JSON )
+            .log( LogDetail.ALL )
             .build();
 
-    public static String paymentRequest (Card card, String path) {
+    public static String paymentRequest(Card card, String path) {
         return given()
-                .spec(requestSpec)
-                .body(card)
+                .spec( requestSpec )
+                .body( card )
                 .when()
-                .post(path)
+                .post( path )
                 .then()
-                .statusCode(200)
+                .statusCode( 200 )
                 .extract().response().asString();
     }
 }

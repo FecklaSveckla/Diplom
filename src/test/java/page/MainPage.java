@@ -9,12 +9,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class MainPage {
-    private SelenideElement heading = $$(".heading").find( exactText( "Путешествие дня" ));
-    private SelenideElement buyButton = $$(".button__text").find( exactText( "Купить" ));
-    private SelenideElement creditButton = $$(".button__text").find( exactText( "Купить в кредит" ));
+    private SelenideElement heading = $$( ".heading" ).find( exactText( "Путешествие дня" ) );
+    private SelenideElement buyButton = $$( ".button__text" ).find( exactText( "Купить" ) );
+    private SelenideElement creditButton = $$( ".button__text" ).find( exactText( "Купить в кредит" ) );
 
     public MainPage() {
-    heading.shouldBe( visible );
+        heading.shouldBe( visible );
     }
 
     public PaymentPage goToPaymentPage() {

@@ -11,16 +11,16 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditPageTest {
-    public static String url = System.getProperty("sut.url");
+    public static String url = System.getProperty( "sut.url" );
 
     @BeforeAll
     static void setUpAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener( "allure", new AllureSelenide() );
     }
 
     @BeforeEach
     public void openPage() {
-        open(url);
+        open( url );
     }
 
     @BeforeEach
@@ -30,7 +30,7 @@ public class CreditPageTest {
 
     @AfterAll
     static void tearDownAll() {
-        SelenideLogger.removeListener("allure");
+        SelenideLogger.removeListener( "allure" );
 
     }
 
@@ -56,7 +56,7 @@ public class CreditPageTest {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getDeclinedCard());
+        credit.fillData( DataHelper.getDeclinedCard() );
         credit.notificationErrorIsVisible();
 
         var statusExpected = "DECLINED";
@@ -71,7 +71,7 @@ public class CreditPageTest {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getHolderInUpperCase());
+        credit.fillData( DataHelper.getHolderInUpperCase() );
         credit.notificationSuccessIsVisible();
 
         var statusExpected = "APPROVED";
@@ -87,7 +87,7 @@ public class CreditPageTest {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getHolderHyphenated());
+        credit.fillData( DataHelper.getHolderHyphenated() );
         credit.notificationSuccessIsVisible();
 
         var statusExpected = "APPROVED";
@@ -100,11 +100,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 1. Негативный")
     @Test
-    void shouldCreditWithNonExistDebitCard(){
+    void shouldCreditWithNonExistDebitCard() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getNonExistCard());
+        credit.fillData( DataHelper.getNonExistCard() );
         credit.notificationErrorIsVisible();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -131,7 +131,7 @@ public class CreditPageTest {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData( DataHelper.getOneNumberInFieldCard());
+        credit.fillData( DataHelper.getOneNumberInFieldCard() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -140,11 +140,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 4. Негативный")
     @Test
-    void shouldCreditWithInvalidDebitCard(){
+    void shouldCreditWithInvalidDebitCard() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getInvalidCardNumber());
+        credit.fillData( DataHelper.getInvalidCardNumber() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -153,11 +153,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 5. Негативный")
     @Test
-    void shouldCreditWithFieldMonthIsEmpty(){
+    void shouldCreditWithFieldMonthIsEmpty() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getEmptyMonth());
+        credit.fillData( DataHelper.getEmptyMonth() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -166,11 +166,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 6. Негативный")
     @Test
-    void shouldCreditWithFieldMonthOver12(){
+    void shouldCreditWithFieldMonthOver12() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getMonthOver12());
+        credit.fillData( DataHelper.getMonthOver12() );
         credit.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -179,11 +179,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 7. Негативный")
     @Test
-    void shouldCreditWithFieldMonthZeroAndNowYear(){
+    void shouldCreditWithFieldMonthZeroAndNowYear() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getZeroMonth());
+        credit.fillData( DataHelper.getZeroMonth() );
         credit.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -192,11 +192,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 8. Негативный")
     @Test
-    void shouldCreditWithExpiredCardMonth(){
+    void shouldCreditWithExpiredCardMonth() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getInvalidPastMonth());
+        credit.fillData( DataHelper.getInvalidPastMonth() );
         credit.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -205,11 +205,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 9. Негативный")
     @Test
-    void shouldCreditWithFieldYearIsEmpty(){
+    void shouldCreditWithFieldYearIsEmpty() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getEmptyYear());
+        credit.fillData( DataHelper.getEmptyYear() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -218,11 +218,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 10. Негативный")
     @Test
-    void shouldCreditWithFieldYearIsLastYear(){
+    void shouldCreditWithFieldYearIsLastYear() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getLastYear());
+        credit.fillData( DataHelper.getLastYear() );
         credit.waitForCardExpiredMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -231,11 +231,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 11. Негативный")
     @Test
-    void shouldCreditWithFieldInvalidYear(){
+    void shouldCreditWithFieldInvalidYear() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getNotComingYear());
+        credit.fillData( DataHelper.getNotComingYear() );
         credit.waitForWrongCardExpirationMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -244,11 +244,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 12. Негативный")
     @Test
-    void shouldCreditWithEmptyCvcField(){
+    void shouldCreditWithEmptyCvcField() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getEmptyCVC());
+        credit.fillData( DataHelper.getEmptyCVC() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -257,11 +257,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 13. Негативный")
     @Test
-    void shouldCreditWithCVCFieldOneNumber(){
+    void shouldCreditWithCVCFieldOneNumber() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getOneNumberCVC());
+        credit.fillData( DataHelper.getOneNumberCVC() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -270,11 +270,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 14. Негативный")
     @Test
-    void shouldCreditWithCVCFieldTwoNumber(){
+    void shouldCreditWithCVCFieldTwoNumber() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getTwoNumberCVC());
+        credit.fillData( DataHelper.getTwoNumberCVC() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -283,11 +283,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 15. Негативный")
     @Test
-    void shouldCreditWithEmptyFieldHolder(){
+    void shouldCreditWithEmptyFieldHolder() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getEmptyHolderCard());
+        credit.fillData( DataHelper.getEmptyHolderCard() );
         credit.waitForValidationMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -296,11 +296,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 16. Негативный")
     @Test
-    void shouldCreditWithFieldHolderOnlyName(){
+    void shouldCreditWithFieldHolderOnlyName() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getInvalidHolderOneNameCard());
+        credit.fillData( DataHelper.getInvalidHolderOneNameCard() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -323,11 +323,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 18. Негативный")
     @Test
-    void shouldCreditWithFieldHolderOnlyNumbers(){
+    void shouldCreditWithFieldHolderOnlyNumbers() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getInvalidHolderNumbersCard());
+        credit.fillData( DataHelper.getInvalidHolderNumbersCard() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
@@ -336,11 +336,11 @@ public class CreditPageTest {
 
     @DisplayName("Для Сценария 19. Негативный")
     @Test
-    void shouldCreditWithFieldHolderOnlySymbols(){
+    void shouldCreditWithFieldHolderOnlySymbols() {
         var startPage = new MainPage();
         var credit = startPage.goToCreditPage();
         credit.cleanField();
-        credit.fillData(DataHelper.getInvalidHolderSymbolsCard());
+        credit.fillData( DataHelper.getInvalidHolderSymbolsCard() );
         credit.waitForWrongFormatMassage();
 
         var statusActual = SQLHelper.getCreditStatus();
