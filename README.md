@@ -5,7 +5,7 @@
 ## Документы
 * [Задание](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Zadanie.md)
 * [План автоматизации](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Plan.md)
-* [Отчет по итогам тестированияе](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Report.md)
+* [Отчет по итогам тестирования](https://github.com/FecklaSveckla/Diplom/blob/main/docs/Report.md)
 * Отчет по итогам автоматизированного тестирования(в разработке)
 
 Дипломный проект представляет собой автоматизацию тестирования комплексного сервиса, взаимодействующего с СУБД и API Банка.
