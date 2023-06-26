@@ -34,7 +34,7 @@ public class CreditPageTest {
 
     }
 
-    @DisplayName("Для Сценария 1. Позитивный")
+    @DisplayName("Заявка Оплата по карте, заполненная валидными данными карты со статусом Approved успешно одобрена банком")
     @Test
     void shouldCreditAllFieldsValidApprovedCard() {
         var startPage = new MainPage();
@@ -50,7 +50,7 @@ public class CreditPageTest {
     }
 
 
-    @DisplayName("Для Сценария 2. Позитивный")
+    @DisplayName("Заявка Оплата по карте, заполненная данными карты со статусом Declined отклонена банком")
     @Test
     void shouldCreditAllFieldValidDeclinedCard() {
         var startPage = new MainPage();
@@ -65,7 +65,7 @@ public class CreditPageTest {
 
     }
 
-    @DisplayName("Для Сценария 3. Позитивный")
+    @DisplayName("Отправка формы заявки, в которой поле Владелец содержит значение введенное в верхнем регистре. Остальные поля заполнены валидными данными.")
     @Test
     void shouldCreditApprovedCardWithHolderNameInUpperCase() {
         var startPage = new MainPage();
@@ -81,7 +81,7 @@ public class CreditPageTest {
     }
 
 
-    @DisplayName("Для Сценария 4. Позитивный")
+    @DisplayName("Отправка формы заявки, в которой поле Владелец содержит значение через дефис. Остальные поля формы содержат валидные данные.")
     @Test
     void shouldCreditApprovedCardWithHolderHyphenated() {
         var startPage = new MainPage();
@@ -98,7 +98,7 @@ public class CreditPageTest {
 
     //НЕГАТИВНЫЕ ПРОВЕРКИ
 
-    @DisplayName("Для Сценария 1. Негативный")
+    @DisplayName("Сценарий 1.Заявка Оплата по карте, заполненная данными карты, отсутствующими в БД банка, отклонена банком. ")
     @Test
     void shouldCreditWithNonExistDebitCard() {
         var startPage = new MainPage();
@@ -112,7 +112,7 @@ public class CreditPageTest {
 
     }
 
-    @DisplayName("Для Сценария 2. Негативный")
+    @DisplayName("Сценарий 2. Отправка формы заявки с пустым полем Номер карты. Остальные поля формы заполнены валидными значениями")
     @Test
     void shouldCreditWithEmptyFieldCardNumber() {
         var startPage = new MainPage();
@@ -125,7 +125,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 3. Негативный")
+    @DisplayName("Сценарий 3. Отправка формы заявки, в которой поле Номер карты содержит одну цифру. Остальные поля формы заполнены валидными данными")
     @Test
     void shouldCreditWithOneNumberInFieldCard() {
         var startPage = new MainPage();
@@ -138,7 +138,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 4. Негативный")
+    @DisplayName("Сценарий 4. Отправка формы заявки, в которой поле Номер карты содержит 15 цифр. Остальные поля формы заполнены валидными данными ")
     @Test
     void shouldCreditWithInvalidDebitCard() {
         var startPage = new MainPage();
@@ -151,7 +151,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 5. Негативный")
+    @DisplayName("Сценарий 5. Отправка формы заявки, в которой поле Месяц пустое. Остальные поля формы заполнены валидными зданными.")
     @Test
     void shouldCreditWithFieldMonthIsEmpty() {
         var startPage = new MainPage();
@@ -164,7 +164,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 6. Негативный")
+    @DisplayName("Сценарий 6. Отправка формы заявки, в которой поле Месяц содержит значение больше 12. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldMonthOver12() {
         var startPage = new MainPage();
@@ -177,7 +177,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 7. Негативный")
+    @DisplayName("Сценарий 7. Отправка формы заявки, в которой поле Месяц меньше значения 01. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldMonthZeroAndNowYear() {
         var startPage = new MainPage();
@@ -190,7 +190,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 8. Негативный")
+    @DisplayName("Сценарий 8. Отправка формы заявки, в которой поле Месяц содержит значение предыдущее от текущего. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithExpiredCardMonth() {
         var startPage = new MainPage();
@@ -203,7 +203,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 9. Негативный")
+    @DisplayName("Сценарий 9. Отправка формы заявки, в которой поле Год пустое. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldYearIsEmpty() {
         var startPage = new MainPage();
@@ -216,7 +216,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 10. Негативный")
+    @DisplayName("Сценарий 10. Отправка формы заявки, в которой поле Год содержит значение соответствующее любому предыдущему году. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldYearIsLastYear() {
         var startPage = new MainPage();
@@ -229,7 +229,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 11. Негативный")
+    @DisplayName("Сценарий 11. Отправка формы заявки, в которой поле Год содержит значение +10 лет к текущему значению года. Остальные поля формы заполнены валидными значениями.")
     @Test
     void shouldCreditWithFieldInvalidYear() {
         var startPage = new MainPage();
@@ -242,7 +242,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 12. Негативный")
+    @DisplayName("Сценарий 12. Отправка формы заявки, в которой поле CVC/CVV пусто. Остальные поля формы заполнены валидными значениями.")
     @Test
     void shouldCreditWithEmptyCvcField() {
         var startPage = new MainPage();
@@ -255,7 +255,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 13. Негативный")
+    @DisplayName("Сценарий 13. Отправка формы заявки, в которой поле CVC/CVV содержит 1 цифру. Остальные поля формы заполнены валидными значениями.")
     @Test
     void shouldCreditWithCVCFieldOneNumber() {
         var startPage = new MainPage();
@@ -268,7 +268,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 14. Негативный")
+    @DisplayName("Сценарий 14. Отправка формы заявки, в которой поле CVC/CVV содержит 2-е цифры. Остальные поля формы заполнены валидными значениями.")
     @Test
     void shouldCreditWithCVCFieldTwoNumber() {
         var startPage = new MainPage();
@@ -281,7 +281,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 15. Негативный")
+    @DisplayName("Сценарий 15. Отправка формы заявки, в которой поле Владелец пустое. Остальные поля формы содержат валидные данные.")
     @Test
     void shouldCreditWithEmptyFieldHolder() {
         var startPage = new MainPage();
@@ -294,7 +294,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 16. Негативный")
+    @DisplayName("Сценарий 16. Отправка формы заявки, в которой поле Владелец содержит фамилию на латинице, а имя отсуствует. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldHolderOnlyName() {
         var startPage = new MainPage();
@@ -307,7 +307,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 17. Негативный")
+    @DisplayName("Сценарий 17. Отправка формы заявки, в которой поле Владелец содержит фамилию и имя на кирилице. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldHolderRusLang() {
         var startPage = new MainPage();
@@ -321,7 +321,7 @@ public class CreditPageTest {
 
     }
 
-    @DisplayName("Для Сценария 18. Негативный")
+    @DisplayName("Сценарий 18.  Отправка формы заявки, в которой поле Владелец заполнено цифрами. Остальные поля формы заполнены валидными данными")
     @Test
     void shouldCreditWithFieldHolderOnlyNumbers() {
         var startPage = new MainPage();
@@ -334,7 +334,7 @@ public class CreditPageTest {
         assertEquals( null, statusActual );
     }
 
-    @DisplayName("Для Сценария 19. Негативный")
+    @DisplayName("Сценарий 19. Оправка формы заявки, в которой поле Владелец заполнено спец.символами. Остальные поля формы заполнены валидными данными.")
     @Test
     void shouldCreditWithFieldHolderOnlySymbols() {
         var startPage = new MainPage();
